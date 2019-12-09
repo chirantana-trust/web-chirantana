@@ -1,0 +1,30 @@
+{% extends "site_base.html" %}
+
+{% block header %}
+
+		<header id="head" class="secondary">
+            <div class="container">
+                    <h1>Our Teachers</h1>
+                    <p>Details of All teachers and their expertise</p>
+                </div>
+    </header>
+
+{% endblock %}
+	<!-- container -->
+{% block container %}
+
+	<section class="container">
+		<div class="row">
+			{% for teacher in teachers %}
+				<h1> {{ teacher.basic_details.firstname }} </h1>
+			{% endfor %}
+		
+		
+		
+	
+		</div>
+	</section>
+
+
+{% endblock %}
+

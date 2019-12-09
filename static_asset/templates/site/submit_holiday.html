@@ -1,0 +1,133 @@
+{% extends "site_base.html" %}
+
+{% block customscript %}
+<script>
+function holidayhowlong(){
+	if(document.getElementById('fday').checked){
+		document.getElementById('fullday').style.display = 'block';
+	}else{
+		document.getElementById('fullday').style.display = 'none';
+	}
+	
+	
+	if (document.getElementById('rday').checked){
+		document.getElementById('rangedays').style.display = 'block';
+	}else {
+		document.getElementById('rangedays').style.display = 'none';
+	} 
+	
+	
+	if(document.getElementById('hday').checked){
+		document.getElementById('halfday').style.display = 'block';
+	}else{
+		document.getElementById('halfday').style.display = 'none';
+	}
+	
+}
+</script>
+{% endblock %}
+{% block customnavbar %}
+	<li class="c5 dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ name }}<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a href="{{ logout_url }}" class="c1"> LOGOUT </a></li>
+		</ul>
+	</li>
+{% endblock %}
+{% block Header %}
+
+{% endblock %}
+
+{% block container %}
+
+<section style="margin-top:20px" class="container">
+
+{% if 'YES' in sent_status %}
+	<script>
+		alert("{{ title }}: {{ msg }} ");
+	</script>
+{% endif %}
+{% if 'NO' in sent_status %}
+	<script>
+		alert("{{ msg }}");
+	</script>
+{% endif %}
+
+<div id="forms" role="tablist" aria-multiselectable="true">
+
+<!-- Start Holiday form -->
+<div class="panel panel-default">
+<div id="SubmitHolidayForm" role="tabpanel" class="jumbotron">
+	<div class="row">
+		<div class="col-md-8 col-md-push-2">
+			<form class="form-light mt-20" id="holidayForm" role="form" action="{{ upload_url }}" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<label>* Holiday Title:</label>
+					<input type="text" name="title" class="form-control" placeholder="Day/Festival name" required="True">
+				</div>
+				
+				<div>
+					<label class="radio-inline"><input type="radio" name="howlong" value="fday" id="fday" onclick="holidayhowlong()" checked="checked">Full Day</label>
+					<label class="radio-inline"><input type="radio" name="howlong" value="rday" id="rday" onclick="holidayhowlong()">Continuous Multiple Days</label>
+					<label class="radio-inline"><input type="radio" name="howlong" value="hday" id="hday" onclick="holidayhowlong()">Half day</label>
+				</div>
+				<br>
+				<div id="fullday" class="row" style="display:block;">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Full Day:</label>
+							<input type="datetime" name="fdate" class="form-control" placeholder="date">
+						</div>
+					</div>
+				</div>
+							
+				<div id="rangedays" class="row" style="display:none;">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Starting Date:</label>
+							<input type="datetime" name="start_date" class="form-control" placeholder="starting date">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Ending Date:</label>
+							<input type="datetime" name="end_date" class="form-control" placeholder="Ending date">
+						</div>
+					</div>
+				</div>
+							
+				<div id="halfday" class="row" style="display:none;">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Half day:</label>
+							<input type="datetime" name="hdate" class="form-control" placeholder="date">
+							<label class="radio-inline"><input type="radio" value="first-half" name="optradio">First Half</label>
+							<label class="radio-inline"><input type="radio" value="second-half" name="optradio">Second Half</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label>Description:</label>
+					<input type="text" name="description" class="form-control" placeholder="Holiday Description">
+				</div>
+														
+				<div class="form-group" align="center">
+					<button onclick="resetForm()" class="btn btn-two">Clear/Reset</button>
+					<button type="submit" class="btn btn-two">Publish Holiday</button>
+				</div>
+				<br/>
+				</form>		
+		</div>
+	</div>
+</div>
+</div>
+ 	
+<!-- End  Holiday form -->
+	
+</div>
+</section>
+
+<!-- /container -->
+{% endblock %}
+ 

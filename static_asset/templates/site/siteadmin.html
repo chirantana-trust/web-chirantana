@@ -1,0 +1,114 @@
+{% extends "site_base.html" %}
+
+{% block customscript %}
+<script>
+function holidayhowlong(){
+	if(document.getElementById('fday').checked){
+		document.getElementById('fullday').style.display = 'block';
+	}else{
+		document.getElementById('fullday').style.display = 'none';
+	}
+	
+	
+	if (document.getElementById('rday').checked){
+		document.getElementById('rangedays').style.display = 'block';
+	}else {
+		document.getElementById('rangedays').style.display = 'none';
+	} 
+	
+	
+	if(document.getElementById('hday').checked){
+		document.getElementById('halfday').style.display = 'block';
+	}else{
+		document.getElementById('halfday').style.display = 'none';
+	}
+	
+}
+</script>
+{% endblock %}
+{% block customnavbar %}
+	<li class="c2 dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ name }}<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li class="c3"><a href="{{ logout_url }}" class="c1"> LOGOUT </a></li>
+		</ul>
+	</li>
+{% endblock %}
+{% block Header %}
+
+{% endblock %}
+
+{% block container %}
+
+<section style="margin-top:20px" class="container">
+
+{% if 'YES' in sent_status %}
+	<script>
+		alert("{{ title }}: {{ msg }} ");
+	</script>
+{% endif %}
+{% if 'NO' in sent_status %}
+	<script>
+		alert("{{ msg }}");
+	</script>
+{% endif %}
+
+<div id="forms" role="tablist" aria-multiselectable="true">
+
+<!-- Start Event form -->
+<div class="col-md-8 col-md-push-2">
+<div class="panel panel-default">
+	<div class="panel-heading" role="tab" id="headingOne">
+		<button type="button" class="btn btn-two" onclick="window.location.href='/Siteadmin/CreateEvent'" >
+         	Create Events
+		</button>
+		<button type="button" class="btn btn-two" onclick="window.location.href='/Events'" >
+         	View Events
+		</button>
+	</div>
+</div>
+
+<!-- End  Event form -->
+
+<!-- Start Holiday form -->
+<div class="panel panel-default">
+	<div class="panel-heading" role="tab" id="headingTwo">
+ 		<button type="button" class="btn btn-two" onclick="window.location.href='/Siteadmin/CreateHoliday'" >
+         Create Holidays
+        </button>
+        <button type="button" class="btn btn-two" onclick="window.location.href='/Siteadmin/CreateHoliday'" >
+         List Holidays
+        </button>
+ 	</div>   
+ </div>
+<!-- End Holiday Form -->
+
+<!-- Start Teachers Form -->   
+<div class="panel panel-default">  
+	<div class="panel-heading" role="tab" id="headingThree">
+		<button type="button" class="btn btn-two" onclick="window.location.href='/Siteadmin/CreateTeacher'" >
+			Add Teacher Details
+		</button>
+		<button type="button" class="btn btn-two" onclick="window.location.href='/Siteadmin/CreateTeacher'" >
+			Edit Teacher Details
+		</button>
+ 	</div>	
+</div>
+<!-- End Tachers Form -->
+
+<!-- Start WebPage Form -->
+<div class="panel panel-default">  
+	<div class="panel-heading" role="tab" id="headingFour">
+		<button type="button" class="btn btn-success btn-lg btn-block" onclick="window.location.href='/Siteadmin/CreateUpload'" >
+   		Web Page Photos
+		</button>
+	</div>	
+</div>
+<!-- End WebPage Form -->
+</div>	
+</div>
+</section>
+
+<!-- /container -->
+{% endblock %}
+ 

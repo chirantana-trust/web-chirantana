@@ -1,0 +1,19 @@
+application: chirantana
+version: soul-002
+runtime: python27
+api_version: 1
+threadsafe: true
+
+
+handlers: 
+- url: /assets
+  static_dir: static_asset/assets
+
+- url: /.*
+  script: main.application 
+ 
+libraries:
+- name: webapp2
+  version: latest
+  
+ 

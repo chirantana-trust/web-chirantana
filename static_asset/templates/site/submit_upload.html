@@ -1,0 +1,68 @@
+{% extends "site_base.html" %}
+
+
+{% block customnavbar %}
+	<li class="c5 dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ name }}<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a href="{{ logout_url }}" class="c1"> LOGOUT </a></li>
+		</ul>
+	</li>
+{% endblock %}
+{% block Header %}
+
+{% endblock %}
+
+{% block container %}
+
+<section style="margin-top:20px" class="container">
+{% if 'YES' in sent_status %}
+	<script>
+		alert("{{ title }}: {{ msg }} ");
+	</script>
+{% endif %}
+{% if 'NO' in sent_status %}
+	<script>
+		alert("{{ msg }}");
+	</script>
+{% endif %}
+
+<div id="forms" role="tablist" aria-multiselectable="true">
+<!-- Event form -->
+<div class="panel panel-default">  
+    <div id="UpdateWebPagePhotosForm" role="tabpanel" class="jumbotron">
+		<div class="row">
+			<div class="col-md-8 col-md-push-2">
+				<form class="form-light mt-20" id="holidayForm" role="form" action="{{ upload_url }}" method="post" enctype="multipart/form-data">
+					<div class="form-group">
+						<label>* Tag:</label>
+						<select name="tag">
+							<option value="Home">Home</option>
+							<option value="About">About</option>
+						</select>
+							
+					</div>		
+					<br>
+
+					<div class="form-group">
+						<label>Photos:</label>
+						<input  type="file" name="file" class="form-control" placeholder="Upload your photo">
+					</div>
+					<br>
+					
+					<div class="form-group" align="center">
+						<button onclick="resetForm()" class="btn btn-two">Clear/Reset</button>
+						<button type="submit" class="btn btn-two">Publish Photos</button>
+					</div>
+					<br/>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Event form -->
+ </div>
+</section>
+<!-- /container -->
+{% endblock %}
+ 

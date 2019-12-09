@@ -1,0 +1,47 @@
+{% extends "site_base.html" %}
+
+
+{% block Header %}
+		<header id="head" class="secondary">
+            <div class="container">
+                    <h1>Events</h1>
+                    <p>List of Events</p>
+                </div>
+    </header>
+{% endblock %}
+
+{% block container %}
+
+	<!-- container -->
+	<section class="container">
+	{% for event in events %}
+	{% if forloop.counter0|divisibleby:4 %}
+	<div class="row">
+	{% endif %}							
+					<div class="col-md-3">					
+							<h3> <u>Title: {{ event.title }}</u> <br></h3>
+							<h4>
+							Start Date: {{ event.sdt}} <br>
+							End Date: {{ event.edt}} <br>
+							Venue: {{ event.venue }} <br>
+							Event Details : {{ event.description }}<br>
+							
+							{% for b in event.brochure %}
+								
+								<button class="btn btn-two" onclick="window.location.href='/images/{{b.get.file}}'" {%if not b.get.file %}disabled>No Brochure{%else %}>Brochure {%endif %}</button><br>
+							
+{% comment %}
+								<button class="btn btn-two" onclick="window.location.href='/images/{{b.get.file}}'">Brochure</button><br>
+{% endcomment %}
+							{% endfor %}
+							
+							</h4>
+					</div>
+	{% if forloop.counter0|divisibleby:4 %}			
+			</div>
+	{% endif %}	
+	{% endfor %}
+	</section>
+	<!-- /container -->
+{% endblock %}
+ 

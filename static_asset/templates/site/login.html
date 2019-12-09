@@ -1,0 +1,91 @@
+{% extends "site_base.html" %}
+
+{% block customscript %}
+
+{% endblock %}
+
+{% block container %}
+<!-- start container block-->
+
+<section style="margin-top:20px" class="container">
+
+
+<div  class="jumbotron">
+
+{% if 'YES' in sent_status %}
+	<script>
+		alert("{{ title }}: {{ msg }} ");
+	</script>
+{% endif %}
+{% if 'NO' in sent_status %}
+	<script>
+		alert("{{ msg }}");
+	</script>
+{% endif %}
+
+
+{% if name %}
+	<h3 class="text-center text-danger bg-danger"> {{ name }} is not an admin.</h3>
+	<p class=text-center text-danger bg-danger> you do not have admin privileges. Please Contact website primary administrator.</p><br>
+	<p class="text-center">
+		<a class="btn btn-primary btn-lg" href="{{ logout_url }}" role="button">Logout</a>
+	</p>
+{% else %}
+	<h3 class="text-center"> Welcome Admin !!!</h3><br>
+	<p class="text-center">
+		<a class="btn btn-primary btn-lg" href="{{ login_url }}" role="button">Login</a><br><br>
+		
+		<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#request-form">
+  			Request Admin Access
+		</button>
+		
+		<div class="row" id="request-form" class="collapse in">
+		<div class="col-md-8 col-md-push-2">
+			<form class="form-light mt-20" id="messageForm" role="form" action="/Login/SubmitRequest" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<label>* Name:</label>
+					<input type="text" name="request" class="form-control" placeholder="short title of the event" required="True">
+				</div>
+				<div class="form-group" >
+					<label>* You are Belongs to?:</label>
+					<select type="text" name="mygroup" required="True">
+						<option value="management">Management</option>
+						<option value="admin">Admin</option>
+						<option value="teachers">Teachers</option>
+					</select>
+				</div>
+				
+									
+				<div class="form-group">
+					<label>* Gmail-id: </label>
+					<input  type="email" name="email" class="form-control" placeholder="your gmail-id" required="True">
+				</div>
+				<!-- <div class="form-group">
+					<label>* Confirm Gmail-id: </label>
+					<input  type="email" name="email-2" class="form-control" placeholder="re-enter same gmail-id" required="True">
+				</div> -->
+				
+				<div class="form-group">
+					<label>* Request Description: </label>
+					<textarea name="desciption" class="form-control" placeholder="Description" required="True"></textarea>
+				</div>
+							
+				<div class="form-group" align="center">
+					<button onclick="resetForm()" class="btn btn-two">Clear/Reset</button>
+					<button type="submit" class="btn btn-two">Send Request</button>
+				</div>
+				<br/>
+			</form>					
+		</div>
+		
+		
+		
+	</p>
+{% endif %}
+
+</div>
+</section>
+	
+{% endblock %}
+<!-- end container block-->
+ 
